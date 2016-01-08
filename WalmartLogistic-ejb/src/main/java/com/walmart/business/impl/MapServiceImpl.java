@@ -19,6 +19,16 @@ public class MapServiceImpl implements MapService{
 	private MapRepository repo = null;
 	
 	@Override
+	public List<MapEntity> findAll() {
+		List<MapEntity> list = repo.findAll();
+		if(list == null || list.isEmpty()){
+			throw new NoDataFoundException("Malhas");
+		}
+		
+		return list;
+	}
+	
+	@Override
 	public MapEntity findMapByName(String name) {
 		MapEntity mapaEntity = repo.findMapByName(name);
 	    if(mapaEntity == null){

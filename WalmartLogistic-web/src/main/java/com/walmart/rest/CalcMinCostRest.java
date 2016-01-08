@@ -17,18 +17,12 @@ import javax.ws.rs.core.Response.Status;
 import com.walmart.business.MapService;
 import com.walmart.exception.BusinessException;
 import com.walmart.model.MapEntity;
+import com.walmart.rest.json.ErrorJSON;
 import com.walmart.rest.json.MinCostResponseJSON;
 import com.walmart.utils.CalculateDistanceUtil;
 import com.walmart.utils.Vertex;
 import com.walmart.utils.exception.CalculateDistanceException;
 
-/**
- * Classe que expoe o serviço de calculo do custo minimo.
- * 
- * @author Diego Santos
- * @since 18/08/2015
- *
- */
 @ApplicationScoped
 @Path("/calcBestCostDelivery")
 public class CalcMinCostRest {
@@ -37,15 +31,16 @@ public class CalcMinCostRest {
   private MapService mapService;
   
   /**
-   * Servico responsavel pelo calculo da rota e custo minimo.
+   * Consultar menor valor de entrega por caminho.
    * 
    * @param mapName nome do mapa
    * @param origin ponto de partida
    * @param destination ponto de chegada
    * @param autonomy autonomia do veiculo  
    * @param fuel valor do combustivel
-   * @return um objeto CustoMinimoResponseJSON com a melhor rota e o custo.
+   * @return um objeto MinCostResponseJSON com a melhor rota e o custo.
    */
+  
   @Produces(MediaType.APPLICATION_JSON)
   @GET
   public Response getCusto(
@@ -74,9 +69,9 @@ public class CalcMinCostRest {
       response.setCost((fuel / autonomy) * calculateDistance.getDistance(destination));
       
     } catch (BusinessException ex) {
-    	return Response.status(Status.NOT_FOUND).entity("MAPA: "+ex.getMessage()).build();
+    	return Response.status(Status.NOT_FOUND).entity(new ErrorJSON(Status.NOT_FOUND.ordinal(), "MAPA: "+ex.getMessage())).build();
     } catch (CalculateDistanceException ex) {
-    	return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+    	return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorJSON(Status.INTERNAL_SERVER_ERROR.ordinal(), ex.getMessage())).build();
     }
     
     return Response.status(Status.OK).entity(response).build();

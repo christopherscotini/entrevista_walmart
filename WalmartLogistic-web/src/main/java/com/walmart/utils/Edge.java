@@ -4,7 +4,7 @@ public class Edge {
 
 	private Vertex from;
 	private Vertex to;
-	private Double distance;
+	private double distance;
 
 	public Edge(Vertex from, Vertex to, Double distance) {
 		this.from = from;
@@ -20,7 +20,7 @@ public class Edge {
 		return to;
 	}
 
-	public Double getDistance() {
+	public double getDistance() {
 		return distance;
 	}
 
@@ -28,8 +28,11 @@ public class Edge {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((distance == null) ? 0 : distance.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(distance);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((from == null) ? 0 : from.hashCode());
+		result = prime * result + ((to == null) ? 0 : to.hashCode());
 		return result;
 	}
 
@@ -42,10 +45,18 @@ public class Edge {
 		if (getClass() != obj.getClass())
 			return false;
 		Edge other = (Edge) obj;
-		if (distance == null) {
-			if (other.distance != null)
+		if (Double.doubleToLongBits(distance) != Double
+				.doubleToLongBits(other.distance))
+			return false;
+		if (from == null) {
+			if (other.from != null)
 				return false;
-		} else if (!distance.equals(other.distance))
+		} else if (!from.equals(other.from))
+			return false;
+		if (to == null) {
+			if (other.to != null)
+				return false;
+		} else if (!to.equals(other.to))
 			return false;
 		return true;
 	}

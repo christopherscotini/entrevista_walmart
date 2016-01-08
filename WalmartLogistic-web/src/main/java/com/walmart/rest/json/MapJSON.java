@@ -1,15 +1,21 @@
 package com.walmart.rest.json;
 
-import java.util.Arrays;
+import java.util.List;
 
-/**
- * @author Diego Santos
- * 
- */
 public class MapJSON {
 
 	private String name;
-	private String[][] network;
+	private List<MapSegment> network;
+
+	public MapJSON() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public MapJSON(String name, List<MapSegment> network) {
+		super();
+		this.name = name;
+		this.network = network;
+	}
 
 	public String getName() {
 		return name;
@@ -19,11 +25,11 @@ public class MapJSON {
 		this.name = name;
 	}
 
-	public String[][] getNetwork() {
+	public List<MapSegment> getNetwork() {
 		return network;
 	}
 
-	public void setNetwork(String[][] network) {
+	public void setNetwork(List<MapSegment> network) {
 		this.network = network;
 	}
 
@@ -32,7 +38,7 @@ public class MapJSON {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + Arrays.hashCode(network);
+		result = prime * result + ((network == null) ? 0 : network.hashCode());
 		return result;
 	}
 
@@ -50,7 +56,10 @@ public class MapJSON {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (!Arrays.deepEquals(network, other.network))
+		if (network == null) {
+			if (other.network != null)
+				return false;
+		} else if (!network.equals(other.network))
 			return false;
 		return true;
 	}

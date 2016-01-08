@@ -15,12 +15,6 @@ import com.walmart.utils.exception.CalculateDistanceException;
 
 /**
  * Implementação do cálculo de menor distância. Baseado no algortimo de custo mínimo de E. Dijkstra.
- * 
- * Artigo utilizado para implementacao:
- * 
- * @see <a
- *      href="http://www.inf.ufsc.br/grafos/temas/custo-minimo/dijkstra.html">http://www.inf.ufsc.br/grafos/temas/custo-minimo/dijkstra.html</a>
- * 
  */
 
 public class CalculateDistanceUtil {
