@@ -30,7 +30,7 @@ A base de dados que esta sendo usada é a H2 base in memory para que possamos ro
 <br/><br/>
 <h4>Instalação e deploy da aplicação</h4>
 - <a href="http://jbossas.jboss.org/downloads/">Faça o download do JBoss AS 7.1.1.Final</a>
-- <a href="https://drive.google.com/file/d/0Bzq5cI-NNm3fYUxwc3pKbUcxcWc/view?usp=sharing">Faça o download do WalmartLogistic-ear-0.0.1.ear (pacote) do Projeto</a>
+- <a href="https://docs.google.com/uc?authuser=0&id=0Bzq5cI-NNm3fYUxwc3pKbUcxcWc&export=download">Faça o download do WalmartLogistic-ear-0.0.1.ear (pacote) do Projeto</a>
 - Copie o arquivo WalmartLogistic-ear-0.0.1.ear baixado no diretório $JBOSS_HOME/standalone/deployments
 - Inicialize o servidor através do arquivo $JBOSS_HOME/bin/standalone.bat
 - Após realizar os passos anterios com suceso os nossos webservices estão prontos para serem consumidos.
