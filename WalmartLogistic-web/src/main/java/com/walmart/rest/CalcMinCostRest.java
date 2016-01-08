@@ -30,7 +30,7 @@ import com.walmart.utils.exception.CalculateDistanceException;
  *
  */
 @ApplicationScoped
-@Path("/"+Constants.CUSTO_SERVICE_PATH)
+@Path("/calcBestCostDelivery")
 public class CalcMinCostRest {
   
   @Inject
@@ -49,11 +49,11 @@ public class CalcMinCostRest {
   @Produces(MediaType.APPLICATION_JSON)
   @GET
   public Response getCusto(
-      @QueryParam(Constants.MAPA_PARAM) String mapName,
-      @QueryParam(Constants.ORIGEM_PARAM) String origin,
-      @QueryParam(Constants.DESTINO_PARAM) String destination,
-      @QueryParam(Constants.AUTONOMIA_PARAM) double autonomy,
-      @QueryParam(Constants.VALOR_COMBUSTIVEL_PARAM) double fuel) {
+      @QueryParam("mapName") String mapName,
+      @QueryParam("origin") String origin,
+      @QueryParam("destination") String destination,
+      @QueryParam("autonomy") double autonomy,
+      @QueryParam("fuel") double fuel) {
     MinCostResponseJSON response = new MinCostResponseJSON();
     try {
       if (fuel == 0 || autonomy == 0) {

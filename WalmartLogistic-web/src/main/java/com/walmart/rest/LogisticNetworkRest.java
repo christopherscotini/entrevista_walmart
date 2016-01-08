@@ -22,7 +22,7 @@ import com.walmart.rest.json.MapJSON;
  * Classe que expoe o serviço de cadastro de Malha Logistica.
  */
 @ApplicationScoped
-@Path("/"+Constants.MALHA_SERVICE_PATH)
+@Path("/insertNetwork")
 public class LogisticNetworkRest {
   
   @Inject
